@@ -1,4 +1,19 @@
+require 'api_constraints'
+
 Coffeecup::Application.routes.draw do
+  resources :users
+  root 'users#index'
+  constraints :subdomain => 'api' do
+    namespace :api, path: nil, defaults: {format: 'json'} do
+      scope module: :v1, constraints: ApiConstraints.new(version: 2) do
+        
+      end
+
+      namespace :v3 do
+
+      end
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
