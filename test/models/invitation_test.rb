@@ -6,14 +6,7 @@ class InvitationTest < ActiveSupport::TestCase
 		invitation = FactoryGirl.create(:invitation)
 
 		user = invitation.invitee
-		p invitation.invitee.id
-		p user.id
-
-		p user.invitations.last
-
-		
-
-
+		p user.inviters
 
 	end
 end
