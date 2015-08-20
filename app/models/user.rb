@@ -1,8 +1,20 @@
 class User < ActiveRecord::Base
+	
+
+	#friendships
 	has_many :friendships
 	has_many :friends, :through => :friendships
 
+	#friend requests
+	has_many :requesting_user_requests, class_name: 'FriendRequest', foreign_key: 'requesting_user_id'
+	has_many :sent_requests, through: :requesting_user_requests, source: :requested_user
 
+	has_many :requested_user_requests, class_name: 'FriendRequest', foreign_key: 'requested_user_id'
+	has_many :received_requests, through: :requested_user_requests, source: :requesting_user
+
+
+
+	# invitations
 	has_many :invitee_invitations, class_name: 'Invitation', foreign_key: 'inviter_id'
 	has_many :invitees, through: :invitee_invitations, source: :invitee
 	
