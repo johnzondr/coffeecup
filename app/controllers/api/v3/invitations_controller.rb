@@ -1,4 +1,4 @@
-class InvitationsController < ApplicationController
+class InvitationsController < ApiController
 
 
 end
