@@ -1,20 +1,18 @@
-class UsersController < ApplicationController
+class Api::V3::FriendshipsController < ApiController
+	before_action :authenticate
 
 	def index
-		@users = User.all
-		respond_to do |format|
-			format.json {render json: @current_user}
-			format.html
-		end
+		@friendships = @current_user.friendships
+		@friends = @current_user.friends
 	end
 
 	private
-
+	
 	def authenticate
 		authenticate_or_request_with_http_token do |token, options|
 			@current_user = User.find_by(token: token)
 		end
 	end
 
-
+	
 end

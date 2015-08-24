@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+	after_create :set_defaults
 	
 
 	#friendships
@@ -25,4 +26,10 @@ class User < ActiveRecord::Base
 	has_many :earned_rewards
 	has_many :checkins
 	has_many :venues, :through => :checkins
+
+	private
+
+	def set_defaults
+		self.hidden = false
+	end
 end

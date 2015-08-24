@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150820101818) do
+ActiveRecord::Schema.define(version: 20150824230655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,9 +60,11 @@ ActiveRecord::Schema.define(version: 20150820101818) do
   end
 
   create_table "invitations", force: true do |t|
-    t.integer "inviter_id"
-    t.integer "invitee_id"
-    t.integer "venue_id"
+    t.integer  "inviter_id"
+    t.integer  "invitee_id"
+    t.integer  "venue_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "offered_rewards", force: true do |t|
@@ -83,10 +85,11 @@ ActiveRecord::Schema.define(version: 20150820101818) do
     t.string   "status"
     t.integer  "most_recent_venue_id"
     t.string   "type"
-    t.boolean  "disabled"
+    t.boolean  "hidden"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "last_name"
+    t.string   "token"
   end
 
   create_table "venue_infos", force: true do |t|

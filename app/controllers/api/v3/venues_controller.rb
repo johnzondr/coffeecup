@@ -1,12 +1,11 @@
-class UsersController < ApplicationController
+class Api::V3::VenuesController < ApplicationController
+	before_action :authenticate
 
 	def index
-		@users = User.all
-		respond_to do |format|
-			format.json {render json: @current_user}
-			format.html
-		end
+		@venues = Venue.all
+
 	end
+
 
 	private
 

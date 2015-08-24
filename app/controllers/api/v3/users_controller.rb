@@ -1,11 +1,9 @@
-class UsersController < ApplicationController
+class Api::V3::UsersController < ApplicationController
+
+	before_action :authenticate, :only => [:index, :update]
 
 	def index
-		@users = User.all
-		respond_to do |format|
-			format.json {render json: @current_user}
-			format.html
-		end
+		@current_user
 	end
 
 	private
@@ -15,6 +13,4 @@ class UsersController < ApplicationController
 			@current_user = User.find_by(token: token)
 		end
 	end
-
-
 end
