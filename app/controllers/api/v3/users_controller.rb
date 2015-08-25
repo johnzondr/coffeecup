@@ -23,6 +23,14 @@ class Api::V3::UsersController < ApiController
 	end
 
 	def user_params
-		params.require(:user).permit(:first_name)
+		{
+
+			device_id: params[:device_id]
+			device_token: params[:device_token]
+			device_os: params[:device_os]
+			fb_token: params[:fb_token]
+			version: params[:verion]
+
+		}
 	end
 end
