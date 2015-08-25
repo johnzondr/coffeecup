@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+	before_create :generate_access_token
 	after_create :set_defaults
 	
 
@@ -32,4 +33,9 @@ class User < ActiveRecord::Base
 	def set_defaults
 		self.hidden = false
 	end
+	def generate_access_token
+	    begin
+	      self.token = SecureRandom.hex
+	    end while self.class.exists?(token: token)
+ 	end
 end
