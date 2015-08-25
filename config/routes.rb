@@ -18,6 +18,7 @@ Coffeecup::Application.routes.draw do
         put '/users/status', to: 'users#status', as: 'user_status'
         resources :venues, :only => [:index, :show]
         resources :invitations
+        post '/token', to: 'users#fbtoken', as: 'user_fbtoken'
 
       end
     end

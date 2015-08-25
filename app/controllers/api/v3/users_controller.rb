@@ -1,6 +1,6 @@
 class Api::V3::UsersController < ApiController
 
-	before_action :authenticate, :only => [:index, :update]
+	before_action :authenticate, :only => [:index, :update, :status, :fbtoken]
 
 	def index
 		@current_user
@@ -12,6 +12,11 @@ class Api::V3::UsersController < ApiController
 
 	def status
 		@current_user.status = params[:status]
+	end
+
+	def fbtoken
+		@current_user.token = params[:fb_token]
+		render json: {}, status: 200
 	end
 
 	private
