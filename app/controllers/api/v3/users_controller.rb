@@ -1,4 +1,4 @@
-class Api::V3::UsersController < ApplicationController
+class Api::V3::UsersController < ApiController
 
 	before_action :authenticate, :only => [:index, :update]
 
@@ -23,6 +23,6 @@ class Api::V3::UsersController < ApplicationController
 	end
 
 	def user_params
-		params.require(:user).permit()
+		params.require(:user).permit(:first_name)
 	end
 end

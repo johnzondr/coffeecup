@@ -1,4 +1,4 @@
-class Api::V3::VenuesController < ApplicationController
+class Api::V3::VenuesController < ApiController
 	before_action :authenticate
 
 	def index
