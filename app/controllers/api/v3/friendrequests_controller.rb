@@ -7,11 +7,13 @@ class Api::V3::FriendrequestsController < ApiController
 
 	def create
 		@current_user
-		@friend_request = FriendRequest.create(friend_request_params)
-		if @friend_request
-			render plain: "ok"
+		@friend_request = FriendRequest.new(friend_request_params)
+		if @friend_request.save
+			render json: @friend_request
 		else
-			render plain: "failed"
+			render json: {
+				message: 'validation failed'
+			}
 		end
 	end
 
@@ -44,6 +46,6 @@ class Api::V3::FriendrequestsController < ApiController
 	end
 
 	def friend_request_params
-		params.require(:friendrequest).permit(:requested_user_id).merge(requesting_user_id: @current_user)
+		params.require(:friendrequest).permit(:requested_user_id).merge(requesting_user_id: @current_user.id)
 	end
 end

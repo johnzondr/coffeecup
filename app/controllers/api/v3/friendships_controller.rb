@@ -6,6 +6,11 @@ class Api::V3::FriendshipsController < ApiController
 		@friends = @current_user.friends
 	end
 
+	def update
+		@friendship = @current_user.friendships.find(params[:id])
+		@friendship.tag = params[:tag]
+	end
+
 	private
 	
 	def authenticate

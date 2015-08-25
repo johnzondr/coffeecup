@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824230655) do
+ActiveRecord::Schema.define(version: 20150825162738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,13 +83,17 @@ ActiveRecord::Schema.define(version: 20150824230655) do
     t.string   "gender"
     t.string   "device_id"
     t.string   "status"
-    t.integer  "most_recent_venue_id"
+    t.integer  "last_check_in_id"
     t.string   "type"
     t.boolean  "hidden"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "last_name"
     t.string   "token"
+    t.string   "fb_token"
+    t.string   "device_os"
+    t.integer  "saved_area_id"
+    t.float    "version"
   end
 
   create_table "venue_infos", force: true do |t|

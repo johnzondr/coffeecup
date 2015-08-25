@@ -6,6 +6,10 @@ class Api::V3::UsersController < ApplicationController
 		@current_user
 	end
 
+	def status
+		@current_user.status = params[:status]
+	end
+
 	private
 
 	def authenticate
