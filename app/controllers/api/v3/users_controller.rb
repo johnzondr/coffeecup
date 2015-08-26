@@ -16,7 +16,7 @@ class Api::V3::UsersController < ApiController
 	end
 
 	def fbtoken
-		@current_user.token = params[:fb_token]
+		@current_user.fb_token = params[:fb_token]
 		@current_user.save
 		render json: {}, status: 200
 	end
