@@ -1,6 +1,6 @@
 class Api::V3::UsersController < ApiController
 
-	before_action :authenticate, :only => [:index, :update, :status, :fbtoken]
+	before_action :authenticate, :only => [:index, :update, :status, :fbtoken, :hide, :unhide]
 
 	def index
 		@current_user
@@ -12,11 +12,27 @@ class Api::V3::UsersController < ApiController
 
 	def status
 		@current_user.status = params[:status]
+		@current_user.save
 	end
 
 	def fbtoken
 		@current_user.token = params[:fb_token]
+		@current_user.save
 		render json: {}, status: 200
+	end
+
+	def hide
+		@current_user.hidden = 1
+		@create.save
+
+		render json: @current_user, status: 200
+	end
+
+	def unhide
+		@current_user.hidden = 0
+		@current_user.save
+
+		render json:{}, status: 200
 	end
 
 	private
@@ -34,7 +50,7 @@ class Api::V3::UsersController < ApiController
 			device_token: params[:device_token],
 			device_os: params[:device_os],
 			fb_token: params[:fb_token],
-			version: params[:verion],
+			version: params[:version],
 
 		}
 	end

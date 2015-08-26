@@ -6,15 +6,16 @@ class Api::V3::FriendrequestsController < ApiController
 	end
 
 	def create
-		@current_user
-		@friend_request = FriendRequest.new(friend_request_params)
-		if @friend_request.save
-			render json: @friend_request
-		else
-			render json: {
-				message: 'validation failed'
-			}
-		end
+		# @current_user
+		# User.find(params[:fb_id])
+		# @friend_request = FriendRequest.new(friend_request_params)
+		# if @friend_request.save
+		# 	render json: @friend_request
+		# else
+		# 	render json: {
+		# 		message: 'validation failed'
+		# 	}
+		# end
 	end
 
 	def update
@@ -46,6 +47,8 @@ class Api::V3::FriendrequestsController < ApiController
 	end
 
 	def friend_request_params
-		params.require(:friendrequest).permit(:requested_user_id).merge(requesting_user_id: @current_user.id)
+		{
+			fb_id: params[:fb_id],
+		}
 	end
 end

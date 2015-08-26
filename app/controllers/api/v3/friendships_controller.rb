@@ -9,6 +9,7 @@ class Api::V3::FriendshipsController < ApiController
 	def update
 		@friendship = @current_user.friendships.find(params[:id])
 		@friendship.tag = params[:tag]
+		@friendship.save
 	end
 
 	private

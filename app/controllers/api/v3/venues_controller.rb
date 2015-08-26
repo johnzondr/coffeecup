@@ -3,7 +3,10 @@ class Api::V3::VenuesController < ApiController
 
 	def index
 		@venues = Venue.all
+	end
 
+	def version
+		
 	end
 
 

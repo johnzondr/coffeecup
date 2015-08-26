@@ -4,6 +4,34 @@ class Api::V3::InvitationsController < ApiController
 
 	def index
 		@invitations = Invitation.all
+	end
+
+	def create
+		invitation = Invitation.new
+		invitation.inviter = @current_user
+		invitation.invitee_id = params[:invited_user_id]
+		invitation.venue_id = params[:venue_id]
+		invitation.save
+		render json: invitation, status: 200
+	end
+
+	def destroy
+		invitation = Invitation.find(params[:id])
+		response = params[:response]
+		if invitation.invitee == @current_user
+			if response == "accept"
+				invitation.accept
+				render json: {response: "accepted invitation"}
+
+			elsif response == "reject"
+				# invitation.destroy
+				invitation.destroy
+				render json: {response: "rejected invitation"}
+
+			end
+		else
+			render json: {error: "invitation doesn't belong to user"}
+		end
 
 	end
 

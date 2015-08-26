@@ -13,9 +13,17 @@ Coffeecup::Application.routes.draw do
       scope module: :v3, constraints: ApiConstraints.new(version: 3) do
         resources :friendrequests
         resources :friendships, :only => [:index, :put, :patch]
-        resources :users
-        #get ':users(/status)' 
-        put '/users/status', to: 'users#status', as: 'user_status'
+        resources :users do
+          collection do
+            put 'status'
+            put 'hide'
+            delete 'hide', to: 'users#unhide', as: 'unhide'
+          end
+        end
+        get 'version', to: 'venues#version', as: 'version'
+        # put '/users/status', to: 'users#status', as: 'user_status'
+        # put '/users/hide', to: 'users#hide', as: 'user_hide'
+        # delete 'users/hide', to: 'users#unhide', as: 'user_unhide'
         resources :venues, :only => [:index, :show]
         resources :invitations
         post '/token', to: 'users#fbtoken', as: 'user_fbtoken'
