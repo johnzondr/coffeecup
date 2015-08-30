@@ -33,6 +33,10 @@ class User < ActiveRecord::Base
 	def set_defaults
 		self.hidden = false
 	end
+
+	def get_info_from_facebook
+		#
+	end
 	def generate_access_token
 	    begin
 	      self.token = SecureRandom.hex

@@ -7,7 +7,16 @@ class Api::V3::UsersController < ApiController
 	end
 
 	def create
-		@user = User.create(user_params)
+		#facebook id check if current user already exists
+		@graph = Koala::Facebook::API.new(params[:fb_token])
+		@profile = @graph.get_object("me")
+		facebook_id = profile["id"]
+		user = User.find_by(fb_id: facebook_id)
+		
+		#if user doesn't already exist, create user
+		if ! user 
+			user = User.create(user_params)
+		end
 	end
 
 	def status
@@ -51,7 +60,10 @@ class Api::V3::UsersController < ApiController
 			device_os: params[:device_os],
 			fb_token: params[:fb_token],
 			version: params[:version],
-
+			first_name: @profile["first_name"]
+			last_name: @profile["last_name"]
+			fb_id: @profile["id"]
+			gender: @profile["gender"]
 		}
 	end
 end

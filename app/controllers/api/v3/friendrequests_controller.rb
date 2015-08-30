@@ -6,16 +6,19 @@ class Api::V3::FriendrequestsController < ApiController
 	end
 
 	def create
-		# @current_user
-		# User.find(params[:fb_id])
-		# @friend_request = FriendRequest.new(friend_request_params)
-		# if @friend_request.save
-		# 	render json: @friend_request
-		# else
-		# 	render json: {
-		# 		message: 'validation failed'
-		# 	}
-		# end
+		requested_friend = User.find_by fb_id: params[:fb_id]
+		friend_request = FriendRequest.new
+		friend_request.requesting_user_id = @current_user.id
+		friend_request.requested_user_id = requested_friend.id
+		friend_request.save
+
+		if friend_request.save
+			render json: friend_request
+		else
+			render json: {
+				message: 'validation failed'
+			}
+		end
 	end
 
 	def update

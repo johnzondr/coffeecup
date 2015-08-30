@@ -13,6 +13,7 @@ Coffeecup::Application.routes.draw do
       scope module: :v3, constraints: ApiConstraints.new(version: 3) do
         resources :friendrequests
         resources :friendships, :only => [:index, :put, :patch]
+        resources :checkins, :only => [:create, :destroy]
         resources :users do
           collection do
             put 'status'
