@@ -35,15 +35,7 @@ class User < ActiveRecord::Base
 		end
 	end
 
-	def set_image
-		self.hidden = false
-		if self.fb_id
-			self.pic_sm = "http://graph.facebook.com/#{self.fb_id}/picture"
-			self.save
-		end
-	end
 	private
-
 
 	def set_defaults
 		self.hidden = false
