@@ -60,9 +60,9 @@ class Api::V3::UsersController < ApiController
 			device_os: params[:device_os],
 			fb_token: params[:fb_token],
 			version: params[:version],
-			first_name: @profile["first_name"]
-			last_name: @profile["last_name"]
-			fb_id: @profile["id"]
+			first_name: @profile["first_name"],
+			last_name: @profile["last_name"],
+			fb_id: @profile["id"],
 			gender: @profile["gender"]
 		}
 	end
