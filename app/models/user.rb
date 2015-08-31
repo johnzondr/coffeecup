@@ -28,10 +28,29 @@ class User < ActiveRecord::Base
 	has_many :checkins
 	has_many :venues, :through => :checkins
 
+	def is_friends_with?(user_id)
+		friendship = self.friendships.find_by(friend_id: user_id)
+		if friendship and (friendship.tag == "friend" or friendship.tag == "best friend")
+			return true
+		end
+	end
+
+	def set_image
+		self.hidden = false
+		if self.fb_id
+			self.pic_sm = "http://graph.facebook.com/#{self.fb_id}/picture"
+			self.save
+		end
+	end
 	private
+
 
 	def set_defaults
 		self.hidden = false
+		if self.fb_id
+			self.pic_sm = "http://graph.facebook.com/#{self.fb_id}/picture"
+			self.save
+		end
 	end
 
 	def get_info_from_facebook

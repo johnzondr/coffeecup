@@ -9,6 +9,11 @@ class Api::V3::VenuesController < ApiController
 		
 	end
 
+	def friends
+		@venues = Venue.all
+		@current_user
+	end
+
 
 	private
 

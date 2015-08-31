@@ -4,7 +4,7 @@ class Api::V3::FriendshipsController < ApiController
 	def index
 		@friendships = @current_user.friendships
 		@friends = @current_user.friends
-		json = {:friendships => @friendships, :friends => @friends}
+		json = {:friends => @friendships}
 		render :json => json
 	end
 

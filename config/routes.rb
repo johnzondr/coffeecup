@@ -25,7 +25,11 @@ Coffeecup::Application.routes.draw do
         # put '/users/status', to: 'users#status', as: 'user_status'
         # put '/users/hide', to: 'users#hide', as: 'user_hide'
         # delete 'users/hide', to: 'users#unhide', as: 'user_unhide'
-        resources :venues, :only => [:index, :show]
+        resources :venues, :only => [:index, :show] do
+          collection do
+            get 'friends'
+          end
+        end
         resources :invitations
         post '/token', to: 'users#fbtoken', as: 'user_fbtoken'
 
