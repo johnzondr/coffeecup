@@ -4,3 +4,4 @@ json.id @current_user.id
 json.hidden @current_user.hidden
 json.suspended "false"
 json.check_in "false"
+json.pic_sm @current_user.pic_sm

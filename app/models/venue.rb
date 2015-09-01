@@ -4,6 +4,7 @@ class Venue < ActiveRecord::Base
 	has_many :offered_rewards
 	has_many :ibeacons
 	has_many :venue_infos
+	has_many :invitations
 
 	def friends_here_for(user_id)
 		checkins = self.checkins.where(checkout_time: nil)

@@ -1,1 +1,1 @@
-json.array! @requests, :id, :first_name, :last_name
+json.array! @requests, :id, :first_name, :last_name, :pic_sm
