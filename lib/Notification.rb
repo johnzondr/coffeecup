@@ -1,5 +1,5 @@
 pusher = Grocer.pusher(
-  certificate: "/path/to/cert.pem",      # required
+  certificate: "/lib/cert.pem",      # required
   passphrase:  "",                       # optional
   gateway:     "gateway.push.apple.com", # optional; See note below.
   port:        2195,                     # optional
@@ -20,7 +20,7 @@ notification = Grocer::Notification.new(
 pusher.push(notification) # return value is the number of bytes sent successfully
 
 
-pusher = Grocer.pusher(connection_options)
-notifications.each do |notification|
-  pusher.push(notification)
-end
+# pusher = Grocer.pusher(connection_options)
+# notifications.each do |notification|
+#   pusher.push(notification)
+# end
