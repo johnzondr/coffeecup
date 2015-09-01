@@ -28,6 +28,7 @@ Coffeecup::Application.routes.draw do
         resources :venues, :only => [:index, :show] do
           collection do
             get 'friends'
+            get 'specials'
           end
         end
         resources :invitations

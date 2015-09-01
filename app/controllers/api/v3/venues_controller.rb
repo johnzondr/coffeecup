@@ -14,6 +14,10 @@ class Api::V3::VenuesController < ApiController
 		@current_user
 	end
 
+	def specials
+		@venues = Venue.all
+	end
+
 
 	private
 
