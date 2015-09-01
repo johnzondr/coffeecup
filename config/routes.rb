@@ -32,7 +32,7 @@ Coffeecup::Application.routes.draw do
           end
         end
         resources :invitations
-        post '/token', to: 'users#fbtoken', as: 'user_fbtoken'
+        #post '/token', to: 'users#fbtoken', as: 'user_fbtoken'
 
       end
     end
