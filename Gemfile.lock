@@ -36,6 +36,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
+    commander (4.3.5)
+      highline (~> 1.7.2)
     erubis (2.7.0)
     execjs (2.5.2)
     factory_girl (4.5.0)
@@ -46,7 +48,11 @@ GEM
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     grocer (0.6.1)
+    highline (1.7.3)
     hike (1.2.3)
+    houston (2.2.3)
+      commander (~> 4.1)
+      json
     i18n (0.7.0)
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
@@ -129,6 +135,7 @@ DEPENDENCIES
   factory_girl
   factory_girl_rails
   grocer
+  houston
   jbuilder (~> 1.2)
   jquery-rails
   koala (~> 2.2)
