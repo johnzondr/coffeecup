@@ -12,6 +12,11 @@ class Api::V3::UsersController < ApiController
 		@profile = @graph.get_object("me")
 		facebook_id = @profile["id"]
 		@user = User.find_by(fb_id: facebook_id)
+
+		if @user
+			@user.attributes(user_params)
+			@user.save
+		end
 	
 		#if user doesn't already exist, create user
 		if ! @user 
