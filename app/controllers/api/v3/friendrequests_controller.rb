@@ -27,7 +27,7 @@ class Api::V3::FriendrequestsController < ApiController
 		friend_request = FriendRequest.find(params[:id])
 		succeeded = friend_request.accept
 		if succeeded
-			render json: succeeded
+			render json: {message: "success"}
 		else
 			# render failure json
 		end
@@ -37,9 +37,9 @@ class Api::V3::FriendrequestsController < ApiController
 		friend_request = FriendRequest.find(params[:id])
 		succeeded = friend_request.destroy
 		if succeeded 
-			# render json
+			render json: {message: "success"}
 		else
-			# render json
+			render json: {message: "deletion failed"}
 		end
 	end
 

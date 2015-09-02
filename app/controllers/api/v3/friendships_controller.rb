@@ -12,6 +12,7 @@ class Api::V3::FriendshipsController < ApiController
 		@friendship = @current_user.friendships.find(params[:id])
 		@friendship.tag = params[:tag]
 		@friendship.save
+		render :json => @friendship
 	end
 
 	private
