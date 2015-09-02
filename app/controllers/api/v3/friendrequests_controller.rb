@@ -2,11 +2,13 @@ class Api::V3::FriendrequestsController < ApiController
 	before_action :authenticate
 
 	def index
-		@requests = @current_user.received_requests
+		@requests = @current_user.requested_user_requests
+		
+		render :json =>  @requests
 	end
 
 	def create
-		requested_friend = User.find_by fb_id: params[:fb_id]
+		requested_friend = User.find_by(fb_id: params[:fb_id])
 		friend_request = FriendRequest.new
 		friend_request.requesting_user_id = @current_user.id
 		friend_request.requested_user_id = requested_friend.id
@@ -22,7 +24,7 @@ class Api::V3::FriendrequestsController < ApiController
 	end
 
 	def update
-		friend_request = FriendRequest.where(requested_user_id: @current_user.id, requesting_user_id: params[:id])
+		friend_request = FriendRequest.find(params[:id])
 		succeeded = friend_request.accept
 		if succeeded
 			render plain: "ok"
