@@ -11,11 +11,11 @@ class Api::V3::UsersController < ApiController
 		@graph = Koala::Facebook::API.new(params[:fb_token])
 		@profile = @graph.get_object("me")
 		facebook_id = @profile["id"]
-		user = User.find_by(fb_id: facebook_id)
-		
+		@user = User.find_by(fb_id: facebook_id)
+	
 		#if user doesn't already exist, create user
-		if ! user 
-			user = User.create(user_params)
+		if ! @user 
+			@user = User.create(user_params)
 		end
 	end
 
