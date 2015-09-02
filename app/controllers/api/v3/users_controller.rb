@@ -10,7 +10,7 @@ class Api::V3::UsersController < ApiController
 		#facebook id check if current user already exists
 		@graph = Koala::Facebook::API.new(params[:fb_token])
 		@profile = @graph.get_object("me")
-		facebook_id = profile["id"]
+		facebook_id = @profile["id"]
 		user = User.find_by(fb_id: facebook_id)
 		
 		#if user doesn't already exist, create user
