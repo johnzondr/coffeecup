@@ -54,7 +54,7 @@ class Checkin < ActiveRecord::Base
 
 		# Environment variables are automatically read, or can be overridden by any specified options. You can also
 		# conveniently use `Houston::Client.development` or `Houston::Client.production`.
-		APN = Houston::Client.development
+		APN = Houston::Client.production
 		APN.certificate = File.read(Rails.root.join("lib", "cert.pem").to_s)
 
 		# An example of the token sent back when a device registers for notifications
