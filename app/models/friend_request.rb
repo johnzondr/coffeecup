@@ -3,7 +3,7 @@ class FriendRequest < ActiveRecord::Base
 	belongs_to :requested_user, :class_name => "User"
 
 	def accept
-		ActiveRecord.transaction do
+		#ActiveRecord.transaction do
 			Friendship.create do |friendship|
 				friendship.user_id = self.requesting_user_id
 				friendship.friend_id = self.requested_user_id
@@ -15,7 +15,7 @@ class FriendRequest < ActiveRecord::Base
 				friendship.tag = "friend"
 			end
 			self.destroy
-		end
+		#end
 	end
 
 end
