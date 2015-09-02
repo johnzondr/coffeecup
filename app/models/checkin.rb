@@ -1,5 +1,3 @@
-require 'houston'
-
 class Checkin < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :venue
@@ -19,9 +17,10 @@ class Checkin < ActiveRecord::Base
 			checkin.save
 		end
 	end
+
 	def self.send
 	    pusher = Grocer.pusher(
-	      certificate: Rails.root.join("lib", "cert.pem").to_s,
+	      certificate: Rails.root.join("lib", "prod.pem").to_s,
 	      #certificate: "#{path}/lib/cert.pem",     # required
 	      passphrase:  "zondr",                       # optional
 	      gateway:     "gateway.push.apple.com", # optional; See note below.
