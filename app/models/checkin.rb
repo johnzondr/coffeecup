@@ -30,7 +30,7 @@ class Checkin < ActiveRecord::Base
 	    notification = Grocer::Notification.new(
 	      device_token:      "5582aa602520add99ce6714414a6a5ea89d700e1e71a2406aff993bc22f65a59",
 	      alert:             "James did this work?",
-	      badge:             42,
+	      badge:             2,
 	      category:          "a category",         # optional; used for custom notification actions
 	      sound:             "siren.aiff",         # optional
 	      expiry:            Time.now + 60*60,     # optional; 0 is default, meaning the message is not stored
