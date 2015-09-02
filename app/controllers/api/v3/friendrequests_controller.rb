@@ -27,7 +27,7 @@ class Api::V3::FriendrequestsController < ApiController
 		friend_request = FriendRequest.find(params[:id])
 		succeeded = friend_request.accept
 		if succeeded
-			render plain: "ok"
+			render json: succeeded
 		else
 			# render failure json
 		end
