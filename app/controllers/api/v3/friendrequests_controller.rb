@@ -22,7 +22,7 @@ class Api::V3::FriendrequestsController < ApiController
 	end
 
 	def update
-		friend_request = FriendRequest.find(params[:id])
+		friend_request = FriendRequest.where(requested_user_id: @current_user.id, requesting_user_id: params[:id])
 		succeeded = friend_request.accept
 		if succeeded
 			render plain: "ok"
