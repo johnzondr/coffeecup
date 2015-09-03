@@ -14,7 +14,7 @@ class Api::V3::UsersController < ApiController
 		@user = User.find_by(fb_id: facebook_id)
 
 		if @user
-			@user.attributes(user_params)
+			@user.update(device_token: params[:device_token])
 			@user.save
 		end
 	
