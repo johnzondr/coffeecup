@@ -13,7 +13,7 @@ json.(@venues) do |venue|
 	json.lng ""
 	json.male_friend_count ""
 	json.males ""
-	json.minor ""
+	json.minor venue.minor
 	json.name venue.name
 	json.others_count ""
 	json.show_pinwheel ""
