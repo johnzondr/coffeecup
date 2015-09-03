@@ -22,7 +22,7 @@ class Api::V3::CheckinsController < ApiController
 
 	def destroy
 		#find checkin and sign user out
-		checkin = Checkin.where(checkin_params, checkout_time: nil)
+		checkin = Checkin.find_by(checkin_params, checkout_time: nil)
 		
 		if checkin	
 			checkin.update(checkout_time: Time.now)
