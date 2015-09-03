@@ -4,14 +4,13 @@ class Api::V3::CheckinsController < ApiController
 		#find if user is already checked in
 		#if user is checked in, update checkin
 		#else create checkin
-		checkin = Checkin.where(checkin_params, checkout_time: nil)
-		
+		checkin = Checkin.find_by(checkin_params, checkout_time: nil)
+
 		if checkin
 			checkin.updated_at = Time.now
-			checkin.save	
-			render json: {
-				message: 'user check in updated'
-			}
+			checkin.save
+
+			render json: checkin
 		else
 			Checkin.create(checkin_params)
 			render json: {
@@ -26,7 +25,7 @@ class Api::V3::CheckinsController < ApiController
 		checkin = Checkin.where(checkin_params, checkout_time: nil)
 		
 		if checkin	
-			checkin.checkout_time = Time.now
+			checkin.update(checkout_time: Time.now)
 			checkin.save
 			render json: {
 				message: 'user checked out'
