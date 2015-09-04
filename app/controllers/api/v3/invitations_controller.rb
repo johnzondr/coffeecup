@@ -3,7 +3,7 @@ class Api::V3::InvitationsController < ApiController
 	before_action :authenticate
 
 	def index
-		@invitations = Invitation.all
+		@invitations = @current_user.inviter_invitations.includes([:venue, :inviter]).all
 	end
 
 	def create
