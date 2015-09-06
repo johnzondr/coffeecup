@@ -11,10 +11,13 @@ class Api::V3::UsersController < ApiController
 		@graph = Koala::Facebook::API.new(params[:fb_token])
 		@profile = @graph.get_object("me")
 		facebook_id = @profile["id"]
+
+		#see if user's facebook id already exists in database
 		@user = User.find_by(fb_id: facebook_id)
 
+		#if user's facebook id is already in database, update info
 		if @user
-			@user.update(device_token: params[:device_token])
+			@user.update(user_params)
 			@user.save
 		end
 	
@@ -22,6 +25,8 @@ class Api::V3::UsersController < ApiController
 		if ! @user 
 			@user = User.create(user_params)
 		end
+
+		
 	end
 
 	def status
