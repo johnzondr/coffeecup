@@ -8,6 +8,7 @@ class Invitation < ActiveRecord::Base
 		notify = IosPushNotification.new
 		message = invitee.first_name.to_s + " " + invitee.last_name.to_s + " is coming to " + venue.name.to_s + "."
 		notify.send(inviter, message)
+		self.destroy
 	end
 	
 	private

@@ -19,7 +19,7 @@ class FriendRequest < ActiveRecord::Base
 		#end
 
 		notify = IosPushNotification.new
-		message = requested_user.first_name.to_s + " " + requested_user.last_name.to_s + " has acccepted your friend request!"
+		message = requested_user.first_name.to_s + " " + requested_user.last_name.to_s + " has accepted your friend request!"
 		notify.send(requesting_user, message)
 	end
 
