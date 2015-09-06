@@ -1,0 +1,1 @@
+require "#{Rails.root}/lib/ios_push_notification" 

@@ -10,17 +10,37 @@ class IosPushNotification
 		)
 	end
 
-	def send
-		notification = Grocer::Notification.new(
-		  device_token:      "a8dd36a2743275c32098eda648f987a88aab81c6ebb4e72777a58ec5bdcd55db",
-		  alert:             "I am the best!",
-		  badge:             42,
-		  category:          "a category",         # optional; used for custom notification actions
-		  sound:             "siren.aiff",         # optional
-		  expiry:            Time.now + 60*60,     # optional; 0 is default, meaning the message is not stored
-		  identifier:        1234,                 # optional; must be an integer
-		  content_available: true                  # optional; any truthy value will set 'content-available' to 1
-		)
-		pusher.push(notification)
+	# type 0 general message
+	# type 1 friends
+	# type 2 invites
+
+	def send(users, message)
+		user_ary = []
+		user_ary << users
+		user_ary.flatten!
+		notifications = user_ary.map do |user|
+			Grocer::Notification.new(
+			  device_token:      user.device_token,
+			  alert:             message,
+			  badge:             1,
+			  category:          "a category",         # optional; used for custom notification actions
+			  sound:             "siren.aiff",         # optional
+			  expiry:            Time.now + 60*60,     # optional; 0 is default, meaning the message is not stored
+			  identifier:        1234,                 # optional; must be an integer
+			  content_available: true,                  # optional; any truthy value will set 'content-available' to 
+
+			)
+		end
+
+		notification_ary = []
+		notification_ary << notifications
+		notification_ary.flatten!
+
+		notification_ary.each do |notif|
+			pusher.push(notif)
+		end
 	end
+
 end
+
+

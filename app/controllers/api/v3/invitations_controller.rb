@@ -9,7 +9,7 @@ class Api::V3::InvitationsController < ApiController
 	def create
 		invitation = Invitation.new
 		invitation.inviter = @current_user
-		invitation.invitee_id = params[:invited_user_id]
+		invitation.invitee_id = params[:invited_user]
 		invitation.venue_id = params[:venue_id]
 		invitation.save
 		render json: invitation, status: 200
