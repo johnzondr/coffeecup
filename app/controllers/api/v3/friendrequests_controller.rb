@@ -11,9 +11,13 @@ class Api::V3::FriendrequestsController < ApiController
 		requested_friend = User.find_by(fb_id: params[:fb_id])
 		friend_request = FriendRequest.new
 		friend_request.requesting_user_id = @current_user.id
-		friend_request.requested_user_id = requested_friend.id
+		if requested_friend
+			friend_request.requested_user_id = requested_friend.id
+		else
+			new_user = User.create(fb_id: params[:fb_id])
+			friend_request.requested_user_id = new_user.id
+		end
 		friend_request.save
-
 		if friend_request.save
 			render json: friend_request
 		else
