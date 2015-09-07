@@ -26,7 +26,7 @@ class Api::V3::UsersController < ApiController
 			@user = User.create(user_params)
 		end
 
-		
+
 	end
 
 	def status
@@ -42,7 +42,7 @@ class Api::V3::UsersController < ApiController
 
 	def hide
 		@current_user.hidden = 1
-		@create.save
+		@current_user.save
 
 		render json: @current_user, status: 200
 	end
