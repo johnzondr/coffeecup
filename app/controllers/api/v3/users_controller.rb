@@ -26,6 +26,10 @@ class Api::V3::UsersController < ApiController
 			@user = User.create(user_params)
 		end
 
+		#notify facebook friends if user just joined zondr
+		friends = @graph.get_connections("me", "friends")
+		@user.notify_friends(friends)
+
 
 	end
 

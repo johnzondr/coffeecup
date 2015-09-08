@@ -35,6 +35,25 @@ class User < ActiveRecord::Base
 		end
 	end
 
+	def notify_friends(friends)
+		#if user just joined zondr 3.0
+		unless installed_already == true
+			notification_list = []
+			friends.each do |friend|
+				user_friend = User.find_by(fb_id: friend["id"])
+				if user_friend
+					notification_list << user_friend
+				end
+			end
+
+			notify = IosPushNotification.new
+			message = first_name.to_s + " " + last_name.to_s + " has joined the new Zondr!"
+			notify.send(notification_list, message)
+			installed_already = true
+			self.save
+		end
+	end
+
 	private
 
 	def set_defaults

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150902233725) do
+ActiveRecord::Schema.define(version: 20150908020420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 20150902233725) do
     t.string   "device_token"
     t.string   "fb_id"
     t.string   "pic_sm"
+    t.boolean  "installed_already"
   end
 
   create_table "venue_infos", force: true do |t|
