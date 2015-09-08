@@ -11,7 +11,7 @@ class Venue < ActiveRecord::Base
 		friends_here = []
 		checkins.each do |checkin|
 			checked_in_user = checkin.user
-			if checked_in_user.is_friends_with?(user_id)
+			if checked_in_user && checked_in_user.is_friends_with?(user_id)
 				friends_here << checked_in_user
 			end
 		end
