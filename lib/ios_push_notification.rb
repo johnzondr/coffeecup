@@ -2,9 +2,9 @@ class IosPushNotification
 	attr_accessor :pusher
 	def initialize
 		self.pusher = Grocer.pusher(
-		  certificate: "#{Rails.root}/lib/cert.pem",      # required
+		  certificate: "#{Rails.root}/lib/prod.pem",      # required
 		  passphrase:  "zondr",                       # optional
-		  gateway:     "gateway.sandbox.push.apple.com", # optional; See note below.
+		  gateway:     "gateway.push.apple.com", # optional; See note below.
 		  port:        2195,                     # optional
 		  retries:     3                         # optional
 		)
