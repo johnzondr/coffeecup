@@ -49,8 +49,7 @@ class User < ActiveRecord::Base
 			notify = IosPushNotification.new
 			message = first_name.to_s + " " + last_name.to_s + " has joined the new Zondr!"
 			notify.send(notification_list, message)
-			installed_already = true
-			self.save
+			self.update_attributes(installed_already: true)
 		end
 	end
 

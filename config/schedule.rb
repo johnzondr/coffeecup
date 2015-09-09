@@ -19,9 +19,9 @@
 
 # Learn more: http://github.com/javan/whenever
 
-set :output, "#{path}/log/cron.log"
+# set :output, "#{path}/log/cron.log"
 
-every 5.minutes do
-	runner "Checkin.refresh_checkouts"
+# every 5.minutes do
+# 	runner "Checkin.refresh_checkouts"
 
-end
+# end
