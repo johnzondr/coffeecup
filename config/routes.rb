@@ -28,9 +28,10 @@ Coffeecup::Application.routes.draw do
         resources :venues, :only => [:index, :show] do
           collection do
             get 'friends'
-            get 'specials'
+            #get 'specials'
           end
         end
+        get "/venue/specials", to: "venues#specials", as: 'venue_specials'
         resources :invitations
         post '/token', to: 'users#fbtoken', as: 'user_fbtoken'
 
