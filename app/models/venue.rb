@@ -25,6 +25,10 @@ class Venue < ActiveRecord::Base
 			self.drinks = specials.drinks
 			self.food = specials.food
 			self.save
+		else
+			self.drinks = ""
+			self.food = ""
+			self.save
 		end
 	end
 end
