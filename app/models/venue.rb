@@ -17,4 +17,14 @@ class Venue < ActiveRecord::Base
 		end
 		friends_here
 	end
+
+	def update_specials
+		day_int = Time.zone.today.wday
+		specials = self.venue_infos.where(day: day_int).last
+		if specials
+			self.drinks = specials.drinks
+			self.food = specials.food
+			self.save
+		end
+	end
 end
