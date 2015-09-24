@@ -13,7 +13,8 @@ Coffeecup::Application.routes.draw do
       scope module: :v3, constraints: ApiConstraints.new(version: 3) do
         resources :friendrequests
         resources :friendships, :only => [:index, :update]
-        resources :checkins, :only => [:create, :destroy]
+        resources :checkins, :only => [:create]
+        delete '/checkins', to: 'checkins#destroy', as: 'checkout'
         resources :users do
           collection do
             put 'status'

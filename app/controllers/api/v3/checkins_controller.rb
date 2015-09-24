@@ -21,20 +21,23 @@ class Api::V3::CheckinsController < ApiController
 	end
 
 	def destroy
+		render json: {
+			message: 'ok'
+		}
 		#find checkin and sign user out
-		checkin = Checkin.find_by(checkin_params, checkout_time: nil)
+		# checkin = Checkin.find_by(checkin_params, checkout_time: nil)
 		
-		if checkin	
-			checkin.update(checkout_time: Time.now)
-			checkin.save
-			render json: {
-				message: 'user checked out'
-			}
-		else
-			render json: {
-				message: 'user check in failed'
-			}
-		end
+		# if checkin	
+		# 	checkin.update(checkout_time: Time.now)
+		# 	checkin.save
+		# 	render json: {
+		# 		message: 'user checked out'
+		# 	}
+		# else
+		# 	render json: {
+		# 		message: 'user check in failed'
+		# 	}
+		# end
 
 	end
 
